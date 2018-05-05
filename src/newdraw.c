@@ -292,16 +292,29 @@ static bool cmd_change_color(int ch, struct editor_context * ctx)
 
 static void cmd_save_file(struct screen * scr, struct edit_buffer * buf)
 {
-	char * filename = screen_save_file_dialog(scr);
-	if (filename) {
-		FILE *output = fopen(filename, "w");
+	char * filepath = screen_save_file_dialog(scr);
+
+	if (filepath) {
+		char *filename = strrchr(filepath, '/');
+		if(!filename) { filename = filepath; }
+		
+		char *p = filename;
+		while((p = strchr(p, '\\'))) { *p = '-'; }
+
+		char * save_path = "./art";
+		char *output_path = calloc(1, strlen(filename) + strlen(save_path) + 2);
+		sprintf(output_path, "%s/%s", save_path, filename);
+		printf("\n%s\n", output_path);
+
+		FILE *output = fopen(output_path, "w");
 		if (!output)
 			error("Could not open '%s' for writing.", filename);
 
 		ans_write(output, buf);
 
 		fclose(output);
-		free(filename);
+		free(output_path);
+		free(filepath);
 	}
 }
 
