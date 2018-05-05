@@ -1,0 +1,79 @@
+	New Draw - an ANSI editor for ncurses capable systems
+
+WHAT IS IT?
+
+  New Draw is an ANSI editor similar to TheDRAW, ACiDDraw, and Duh DRAW.
+  It runs on GNU/Linux and other POSIX-like operating systems that support the
+  ncurses library for terminal I/O.
+
+ANSI GRAPHICS AND THE IBM CP437 CHARACTER SET
+
+  ANSI and ASCII graphics use the IBM CP437 character set.  This is usually
+  not set by default in terminal programs such as PuTTY, KDE Konsole, or the
+  regular Linux terminal.
+  
+  New Draw currently does not attempt to change the character by default but
+  instead expects the user to configure it.  You can use the ``-f'' command
+  line option to force the IBM CP437 character set.  Please note that it only
+  works for regular text-mode terminals at the moment.
+
+CONFIGURING CHARACTER SET FOR YOUR TERMINAL
+
+  PuTTY:
+    
+      In the "Window\Translation" settings, choose character set "CP437." Set
+      function keys behavior to "Xterm R6" in "Terminal\Keyboard" settings to
+      get access to all function keys.
+
+  xterm:
+
+      If you have dosemu installed, you can start a new xterm with the correct
+      character set like this:
+
+      xset +fp /usr/share/dosemu/Xfonts/
+      xterm -fn vga
+
+  If you get New Draw working correctly on other terminals, please send the
+  instructions to <penberg@iki.fi> and they will be included here.
+
+COMMAND LINE OPTIONS
+
+  The program accepts the following command line options:
+
+	-h  Help
+	-f  Force IBM CP437 character set.
+
+	-c <cols>  Set the number of columns for the edit buffer.
+	-r <rows>  Set the number of rows for the edit buffer.
+
+KEYBOARD COMMANDS
+
+  Here are the keyboard commands:
+
+	Cursors / Pg Up / Pg Dn / End / Home  Move cursor around
+	META - x  Quit
+	META - s  Save to file
+	META - Up / Down  Change background color
+	META - Left / Right  Change foreground color
+
+  Please note that the META key is usually the ESC or Alt key depending on
+  your configuration.
+  
+LICENSE
+
+  The software is licensed under the GNU General Public License version 2 or
+  later.  Please refer to LICENSE for details.
+
+BUGS AND LIMITATIONS
+
+  Plenty.  Report them to <penberg@iki.fi>.
+
+AUTHOR
+
+  Pekka Enberg <penberg@iki.fi>
+
+WHAT OTHER ANSI EDITORS ARE THERE?
+
+  Duh DRAW [1] is maintained by Walt Stoneburner.
+
+    1. <http://www.wwco.com/~wls/opensource/duhdraw.php>
